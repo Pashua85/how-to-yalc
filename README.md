@@ -128,7 +128,7 @@ yalc сам не устанавливает зависимости, указан
 ## мт,нч;
 (много текста, не читал)
 
-[“Телеграфным слогом”("in a nutchell")](https://www.youtube.com/watch?v=A8M8qTclbho&ab_channel=BBC), процесс работы с yalc таков:
+[“Телеграфным слогом”](https://www.youtube.com/watch?v=A8M8qTclbho&ab_channel=BBC)("in a nutchell"), процесс работы с yalc таков:
 
     // установите yalc единожды
     // --------------
