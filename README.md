@@ -64,7 +64,7 @@ yalc сам не устанавливает зависимости, указан
 
 На момент написания статьи существует баг, при котором у зависимостей, установленный с помощью yalc, возникают проблемы с доступом:
 
-    // в папке тестируемого проекта
+    // в папке зависимого от пакета проекта
     $ <some command that relies on my-project>
 
     path/to/test-project/node_modules/.bin/my-package
@@ -76,3 +76,24 @@ yalc сам не устанавливает зависимости, указан
 
     $ chmod +x  <path from error>   
     // например, chmod +x path/to/test_project/node_modules/.bin/my-package
+
+## Пуш изменений пакета в зависимый проект ##
+
+После сохранения изменений в разрабатываемом модуле просто используйте команду `yalc push` из его корневой папки для пуша изменений в хранилище, и yalc автоматически обновит все зависимые от этого пакета проекты на Вашем компьютере.
+
+    //  в папке разрабатываемого пакета
+    $  yalc push  //  краткая запись команды   yalc  publish  --push
+
+    Pushing my-package@<version> in path/to/my-package
+    Pushing my-package@<version>-<hash8> added ==> path/to/my-project/node_modules/package.
+    Pushing my-package@<version> in path/to/my-project2
+    Pushing my-package@<version>-<hash8> added ==> path/to/my-project2/node_modules/package.
+    my-package@<version>-<hash8> published in store.
+
+Если Вам не нужно автоматическое обновление зависимостей во всех проектах, в которых установлен пакет (например, если Вам нужно, чтобы разные проекты работали с разными его версиями), используйте команды `yalc publish` и `yalc update`:
+
+    //  в папке разрабатываемого пакета
+    $  yalc publish
+
+    //  в папке зависимого проекта
+  $  yalc update 
