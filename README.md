@@ -64,10 +64,15 @@ yalc сам не устанавливает зависимости, указан
 
 На момент написания статьи существует баг, при котором у зависимостей, установленный с помощью yalc, возникают проблемы с доступом:
 
-  // в папке тестируемого проекта
-  $ <some command that relies on my-project>
+    // в папке тестируемого проекта
+    $ <some command that relies on my-project>
 
-  path/to/test-project/node_modules/.bin/my-package
-  /bin/sh: path/to/test-project/node_modules/.bin/my-package: Permission denied
-  error Command failed with exit code 126.
-  info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+    path/to/test-project/node_modules/.bin/my-package
+    /bin/sh: path/to/test-project/node_modules/.bin/my-package: Permission denied
+    error Command failed with exit code 126.
+    info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+
+Это можно исправить, обновив разрешение доступа у файла из сообщения об ошибке:
+
+    $ chmod +x  <path from error>   
+    // например, chmod +x path/to/test_project/node_modules/.bin/my-package
