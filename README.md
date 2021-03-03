@@ -57,4 +57,17 @@ yalc также добавляет файл `yalc.lock`, который хран
       }
     }
 
+yalc сам не устанавливает зависимости, указанные в package.json разрабатываемого Вами пакета. Поэтому, если таковые имеются, их нужно проинсталлировать в тестируемом проекте после добавления туда пакета:
 
+    // в папке зависимого от пакета проекта
+    $ npm install  //  или yarn
+
+На момент написания статьи существует баг, при котором у зависимостей, установленный с помощью yalc, возникают проблемы с доступом:
+
+  // в папке тестируемого проекта
+  $ <some command that relies on my-project>
+
+  path/to/test-project/node_modules/.bin/my-package
+  /bin/sh: path/to/test-project/node_modules/.bin/my-package: Permission denied
+  error Command failed with exit code 126.
+  info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
